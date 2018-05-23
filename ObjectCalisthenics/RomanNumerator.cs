@@ -1,46 +1,28 @@
-﻿using System.Collections.Generic;
-using System.Text;
+﻿using System.Text;
 
 namespace ObjectCalisthenics
 {
-    public class RomanNumerator
+    public static class RomanNumerator
     {
-        private readonly Dictionary<int, string> _symbolDictionary = new Dictionary<int, string>
+        public static string Convert(int arabic)
         {
-            { 1000, "M" },
-            { 900, "CM" },
-            { 500, "D" },
-            { 400, "CD" },
-            { 100, "C" },
-            { 90, "XC" },
-            { 50, "L" },
-            { 40, "XL" },
-            { 10, "X" },
-            { 9, "IX" },
-            { 5, "V" },
-            { 4, "IV" },
-            { 1, "I" },
-        };
-
-        private StringBuilder _result = new StringBuilder();
-
-        public string Convert(int arabic)
-        {
-            foreach (var item in _symbolDictionary)
+            StringBuilder result = new StringBuilder();
+            foreach (var item in SymbolDictionaries.Roman)
             {
-                ProcessSymbol(ref arabic, item.Key, item.Value);
+                result.Append(ProcessSymbol(ref arabic, item.Key, item.Value));
             }
-
-            return _result.ToString();
+            return result.ToString();
         }
 
-        private void ProcessSymbol(ref int arabic, int value, string symbol)
+        private static string ProcessSymbol(ref int arabic, int value, string symbol)
         {
+            string result = string.Empty;
             while (arabic >= value)
             {
-                _result.Append(symbol);
+                result += symbol;
                 arabic -= value;
             }
+            return result;
         }
     }
 }
