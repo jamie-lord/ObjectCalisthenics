@@ -91,7 +91,7 @@ namespace UnitTests
 
         private void TestConvert(int arabic, string expectedResult)
         {
-            string result = RomanNumerator.Convert(arabic);
+            string result = new RomanNumerator().Convert(arabic);
 
             Assert.Equal(result, expectedResult);
         }
