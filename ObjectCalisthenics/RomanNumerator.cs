@@ -7,9 +7,10 @@ namespace ObjectCalisthenics
         public static string Convert(int arabic)
         {
             StringBuilder result = new StringBuilder();
-            foreach (var item in SymbolDictionaries.Roman)
+            foreach (var item in SymbolDictionaries.GetRomanSymbols())
             {
-                result.Append(ProcessSymbol(ref arabic, item.Key, item.Value));
+                string symbol = ProcessSymbol(ref arabic, item.Key, item.Value);
+                result.Append(symbol);
             }
             return result.ToString();
         }
