@@ -1,27 +1,26 @@
-﻿using System.Text;
-
-namespace ObjectCalisthenics
+﻿namespace ObjectCalisthenics
 {
     public static class RomanNumerator
     {
-        public static string Convert(int arabic)
+        public static string Convert(int value)
         {
-            StringBuilder result = new StringBuilder();
+            ArabicNumber arabic = new ArabicNumber(value);
+            SymbolStringBuilder result = new SymbolStringBuilder();
             foreach (var item in SymbolDictionaries.GetRomanSymbols())
             {
-                string symbol = ProcessSymbol(ref arabic, item.Key, item.Value);
+                SymbolResult symbol = ProcessSymbol(ref arabic, item.Key, item.Value);
                 result.Append(symbol);
             }
-            return result.ToString();
+            return result.GetValue();
         }
 
-        private static string ProcessSymbol(ref int arabic, int value, string symbol)
+        private static SymbolResult ProcessSymbol(ref ArabicNumber arabic, ArabicNumber value, string symbol)
         {
-            string result = string.Empty;
-            while (arabic >= value)
+            SymbolResult result = new SymbolResult();
+            while (arabic.GreaterThanOrEqualTo(value))
             {
-                result += symbol;
-                arabic -= value;
+                result.AppendToResult(symbol);
+                arabic.SubtractFrom(value);
             }
             return result;
         }
