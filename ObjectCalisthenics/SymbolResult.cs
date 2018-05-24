@@ -9,9 +9,9 @@
             return _value;
         }
 
-        public void AppendToResult(string symbol)
+        public void AppendToResult(Symbol symbol)
         {
-            _value += symbol;
+            _value += symbol.GetValue();
         }
     }
 }

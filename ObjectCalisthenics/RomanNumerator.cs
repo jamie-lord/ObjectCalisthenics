@@ -6,21 +6,21 @@
         {
             ArabicNumber arabic = new ArabicNumber(value);
             SymbolStringBuilder result = new SymbolStringBuilder();
-            foreach (var item in SymbolDictionaries.GetRomanSymbols())
+            foreach (Symbol symbol in SymbolDictionaries.GetRomanSymbols())
             {
-                SymbolResult symbol = ProcessSymbol(ref arabic, item.Key, item.Value);
-                result.Append(symbol);
+                SymbolResult symbolResult = ProcessSymbol(ref arabic, symbol);
+                result.Append(symbolResult);
             }
             return result.GetValue();
         }
 
-        private static SymbolResult ProcessSymbol(ref ArabicNumber arabic, ArabicNumber value, string symbol)
+        private static SymbolResult ProcessSymbol(ref ArabicNumber arabic, Symbol symbol)
         {
             SymbolResult result = new SymbolResult();
-            while (arabic.GreaterThanOrEqualTo(value))
+            while (arabic.GreaterThanOrEqualTo(symbol))
             {
                 result.AppendToResult(symbol);
-                arabic.SubtractFrom(value);
+                arabic.SubtractFrom(symbol);
             }
             return result;
         }

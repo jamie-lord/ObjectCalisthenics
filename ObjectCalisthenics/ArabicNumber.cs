@@ -13,14 +13,16 @@
             return _arabicNumber;
         }
 
-        public bool GreaterThanOrEqualTo(ArabicNumber anotherNumber)
+        public bool GreaterThanOrEqualTo(Symbol symbol)
         {
-            return _arabicNumber >= anotherNumber.ToInt();
+            ArabicNumber number = symbol.GetArabicNumber();
+            return _arabicNumber >= number.ToInt();
         }
 
-        public void SubtractFrom(ArabicNumber anotherNumber)
+        public void SubtractFrom(Symbol symbol)
         {
-            _arabicNumber -= anotherNumber.ToInt();
+            ArabicNumber number = symbol.GetArabicNumber();
+            _arabicNumber -= number.ToInt();
         }
     }
 }
